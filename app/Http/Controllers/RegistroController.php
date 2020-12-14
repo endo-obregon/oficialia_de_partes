@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registro;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegistroController extends Controller
@@ -14,7 +15,8 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        //
+        $registros = Registro::get();
+        return view('registros.registrosList', compact('registros'));
     }
 
     /**
@@ -22,9 +24,10 @@ class RegistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()    
     {
-        //
+        $usuarios = User::get();
+        return view('registros.registrosForm', compact('usuarios'));
     }
 
     /**
@@ -35,7 +38,18 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'no_registro'=>'required|min:5|max:255|string',
+            'fecha'=>'required|date',
+            'asunto'=>'required|min:5|max:255|string',
+            'dependencia'=>'required|min:5|max:255|string',
+            'envia'=>'required|min:5|max:255|string',
+            'destinatario'=>'required|min:5|max:255|string',
+            'seguimiento'=>'required|min:5|max:255|string',
+            'user_id'=>'required|numeric',
+        ]);
+        Registro::create($request->all());
+        return redirect(route('registro.index'));
     }
 
     /**

@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(Registro::class);
     }
 
+    public function getNombreAttribute()
+    {
+        return $this->name;
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

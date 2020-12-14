@@ -19,7 +19,7 @@ class Registro extends Model
         'user_id',   
   
     ];
-    function usuario()
+    function user()
     {
         return $this->belongsTo(User::class);
     }
