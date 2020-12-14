@@ -1,4 +1,5 @@
 <x-app-layout>
+<link href="{{ asset('css/stylesdos.css') }}" rel="stylesheet">
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Crear registro') }}

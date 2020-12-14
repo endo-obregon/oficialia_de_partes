@@ -1,4 +1,6 @@
 <x-app-layout>
+<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Registros') }}
@@ -25,7 +27,7 @@
                    
                         <tr>
                             <td>{{ $registro->id }}</td>
-                            <td><a href="{{ route('registro.show', [$registro]) }}">{{ $registro->no_registro }}</a></td>
+                            <td>{{ $registro->no_registro }}</td>
                             <td>{{ $registro->fecha }}</td>
                             <td>{{ $registro->asunto }}</td>
                             <td>{{ $registro->dependencia }}</td>
@@ -33,6 +35,7 @@
                             <td>{{ $registro->destinatario }}</td>
                             <td>{{ $registro->seguimiento }}</td>
                             <td>{{ $registro->user->nombre }}</td>
+                            <td><a href="{{ route('registro.show', [$registro]) }}">Ver aquí</a></td>
                         </tr>   
                    @endforeach
                 </table>
