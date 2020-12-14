@@ -16,6 +16,7 @@
                         <th>Asunto</th>
                         <th>Dependencia</th>
                         <th>Envia</th>
+                        <th>Destinatario</th>
                         <th>Seguimiento</th>
                         <th>Usuario</th>
                     </tr>
@@ -24,6 +25,7 @@
                    
                         <tr>
                             <td>{{ $registro->id }}</td>
+                            <td><a href="{{ route('registro.show', [$registro]) }}">{{ $registro->no_registro }}</a></td>
                             <td>{{ $registro->fecha }}</td>
                             <td>{{ $registro->asunto }}</td>
                             <td>{{ $registro->dependencia }}</td>

@@ -60,7 +60,7 @@ class RegistroController extends Controller
      */
     public function show(Registro $registro)
     {
-        //
+        return view('registros.registroShow', compact('registro'));
     }
 
     /**
@@ -71,7 +71,8 @@ class RegistroController extends Controller
      */
     public function edit(Registro $registro)
     {
-        //
+        $usuarios = User::get();
+        return view('registros.registrosForm', compact('registro', 'usuarios'));
     }
 
     /**
@@ -83,7 +84,18 @@ class RegistroController extends Controller
      */
     public function update(Request $request, Registro $registro)
     {
-        //
+        $request->validate([
+            'no_registro'=>'required|min:5|max:255|string',
+            'fecha'=>'required|date',
+            'asunto'=>'required|min:5|max:255|string',
+            'dependencia'=>'required|min:5|max:255|string',
+            'envia'=>'required|min:5|max:255|string',
+            'destinatario'=>'required|min:5|max:255|string',
+            'seguimiento'=>'required|min:5|max:255|string',
+            'user_id'=>'required|numeric',
+        ]);
+        Registro::where('id', $registro->id)->update($request->except('_method', '_token'));
+        return redirect(route('registro.index'));
     }
 
     /**
@@ -94,6 +106,7 @@ class RegistroController extends Controller
      */
     public function destroy(Registro $registro)
     {
-        //
+        $registro->delete();
+        return redirect(route('registro.index'));
     }
 }
